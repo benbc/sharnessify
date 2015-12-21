@@ -18,6 +18,25 @@ That's why the goal of this project is to make it easy to cleanly
 install Sharness support, so that Sharness files are separated from
 other files and can easily be installed and updated.
 
+## Running Sharnessify
+
+When Sharnessify runs, the working directory must be in your project's
+Git working copy.
+
+```
+~/src/your-project $ mkdir test
+~/src/your-project $ ~/src/sharnessify/sharnessify.sh test
+~/src/your-project $ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	new file:   sharness/.gitignore
+	new file:   sharness/Makefile
+	new file:   sharness/lib/install-sharness.sh
+	new file:   sharness/t0000-sharness.sh
+```
+
 ## How it works
 
 The `sharnessify.sh` script adds a Sharness install and update script
