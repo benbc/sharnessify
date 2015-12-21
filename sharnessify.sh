@@ -109,13 +109,13 @@ log "SHARNESS_VERSION is set to '$SHARNESS_VERSION'"
 
 # Substitute variables in install script
 ESCAPED_URL=$(echo "$SHARNESS_URL" | sed -e 's/[\/&]/\\&/g')
-sed -i "s/XXX_SHARNESSIFY_VERSION_XXX/$SHARNESS_VERSION/" "$INSTALL_SCRIPT" ||
+sed -i '' -e "s/XXX_SHARNESSIFY_VERSION_XXX/$SHARNESS_VERSION/" "$INSTALL_SCRIPT" ||
 die "could not modify '$INSTALL_SCRIPT'"
-sed -i "s/XXX_SHARNESSIFY_URL_XXX/$ESCAPED_URL/" "$INSTALL_SCRIPT" ||
+sed -i '' -e "s/XXX_SHARNESSIFY_URL_XXX/$ESCAPED_URL/" "$INSTALL_SCRIPT" ||
 die "could not modify '$INSTALL_SCRIPT'"
-sed -i "s/XXX_SHARNESSIFY_LIB_XXX/$LIB_BASE_DIR/" "$INSTALL_SCRIPT" ||
+sed -i '' -e "s/XXX_SHARNESSIFY_LIB_XXX/$LIB_BASE_DIR/" "$INSTALL_SCRIPT" ||
 die "could not modify '$INSTALL_SCRIPT'"
-sed -i "s/XXX_SHARNESSIFY_SHARNESS_XXX/sharness/" "$INSTALL_SCRIPT" ||
+sed -i '' -e "s/XXX_SHARNESSIFY_SHARNESS_XXX/sharness/" "$INSTALL_SCRIPT" ||
 die "could not modify '$INSTALL_SCRIPT'"
 log "Variables substituted in '$INSTALL_SCRIPT'"
 
@@ -140,7 +140,7 @@ SHARNESS_TEST_LIB="$LIB_BASE_DIR/$SHARNESS_BASE_DIR/sharness.sh"
 ESCAPED_TEST_LIB=$(echo "$SHARNESS_TEST_LIB" | sed -e 's/[\/&]/\\&/g')
 cp "$SIMPLE_TEST_ORIG" "$SIMPLE_TEST_DEST" ||
 die "could not copy '$SIMPLE_TEST_ORIG' to '$SIMPLE_TEST_DEST'"
-sed -i "s/. .\/sharness.sh/. .\/$ESCAPED_TEST_LIB/" "$SIMPLE_TEST_DEST" ||
+sed -i '' -e "s/. .\/sharness.sh/. .\/$ESCAPED_TEST_LIB/" "$SIMPLE_TEST_DEST" ||
 die "could not modify '$SIMPLE_TEST_DEST'"
 log "Simple test ($SIMPLE_TEST_DEST) created"
 
@@ -154,9 +154,9 @@ MAKEFILE_SCRIPT="$SHARNESS_DIR/$MAKEFILE_NAME"
 log "MAKEFILE_SCRIPT ($MAKEFILE_SCRIPT) has been copied from '$TEMPLATE_DIR'"
 
 # Substitute variables in Makefile
-sed -i "s/XXX_SHARNESSIFY_LIB_XXX/$LIB_BASE_DIR/" "$MAKEFILE_SCRIPT" ||
+sed -i '' -e "s/XXX_SHARNESSIFY_LIB_XXX/$LIB_BASE_DIR/" "$MAKEFILE_SCRIPT" ||
 die "could not modify '$MAKEFILE_SCRIPT'"
-sed -i "s/XXX_SHARNESSIFY_SHARNESS_XXX/sharness/" "$MAKEFILE_SCRIPT" ||
+sed -i '' -e "s/XXX_SHARNESSIFY_SHARNESS_XXX/sharness/" "$MAKEFILE_SCRIPT" ||
 die "could not modify '$MAKEFILE_SCRIPT'"
 log "Variables substituted in '$MAKEFILE_SCRIPT'"
 
